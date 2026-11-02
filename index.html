@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Даны ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Угловые орнаменты (Бантики) -->
+    <div class="corner top-left"></div>
+    <div class="corner bottom-right"></div>
+
+    <!-- Плавающие сердечки на фоне -->
+    <div id="hearts-container"></div>
+
+    <div class="book">
+        <!-- СТРАНИЦЫ 1-6: КОМПЛИМЕНТЫ С ФОТО -->
+        <div class="page active" id="page1">
+            <img src="https://i.ibb.co/cK1TdqJR/IMG-20261102-231659-176.jpg" alt="Фото 1" class="page-img">
+            <p class="compliment">Дана, твоя улыбка способна осветить даже самый хмурый день. Ты невероятно красива! ❤️</p>
+            <button class="next-btn" onclick="nextPage(2)">Дальше 💖</button>
+            
+            <!-- Кнопка админки на первой странице -->
+            <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); opacity: 0.3; cursor: pointer; font-size: 16px; color: #333;" onclick="openAdmin()">1</div>
+        </div>
+
+        <div class="page" id="page2">
+            <img src="https://i.ibb.co/FbMT4Ss9/IMG-20261102-231658-957.jpg" alt="Фото 2" class="page-img">
+            <p class="compliment">В твоих глазах можно утонуть. Ты как произведение искусства. ✨</p>
+            <button class="next-btn" onclick="nextPage(3)">Дальше 💖</button>
+        </div>
+
+        <div class="page" id="page3">
+            <img src="https://i.ibb.co/Vpj8GXGK/IMG-20261102-231658-907.jpg" alt="Фото 3" class="page-img">
+            <p class="compliment">С тобой мир становится ярче и добрее. Ты настоящее чудо. 🌸</p>
+            <button class="next-btn" onclick="nextPage(4)">Дальше 💖</button>
+        </div>
+
+        <div class="page" id="page4">
+            <img src="https://i.ibb.co/dwCvW6Gs/IMG-20261102-231658-990.jpg" alt="Фото 4" class="page-img">
+            <p class="compliment">У тебя самая милая и искренняя улыбка на свете. 😍</p>
+            <button class="next-btn" onclick="nextPage(5)">Дальше 💖</button>
+        </div>
+
+        <div class="page" id="page5">
+            <img src="https://i.ibb.co/vC5HJ1Q4/IMG-20261102-231524-174.jpg" alt="Фото 5" class="page-img">
+            <p class="compliment">Ты очень хороший человек, и я счастлив, что ты есть 💕</p>
+            <button class="next-btn" onclick="nextPage(6)">Дальше 💖</button>
+        </div>
+
+        <div class="page" id="page6">
+            <img src="https://i.ibb.co/fdns6bcz/IMG-20261102-231526-772.jpg" alt="Фото 6" class="page-img">
+            <p class="compliment">Дана, ты самая лучшая. И это только начало... 💌</p>
+            <button class="next-btn" onclick="nextPage(7)">Дальше 💖</button>
+        </div>
+
+        <!-- ВОПРОС 1 -->
+        <div class="page" id="page7">
+            <h2>Ты красивая?</h2>
+            <button class="ans-btn" onclick="handleQ1('Да, я красотка')">Да, я красотка 👑</button>
+            <button class="ans-btn" onclick="handleQ1('Я няшная')">Я няшная 🐱</button>
+            <button class="ans-btn" onclick="handleQ1('Нет')">Нет 🙅‍♀️</button>
+        </div>
+
+        <!-- ВОПРОС 2 -->
+        <div class="page" id="page8">
+            <h2 id="ans1-text" class="fade-text"></h2>
+            <div id="q2-block" style="display:none; margin-top: 20px;">
+                <h3>Кто я для тебя?</h3>
+                <input type="text" id="whoAmI" placeholder="Напиши свой ответ...">
+                <button class="ans-btn" onclick="submitTextAns()">Отправить 💌</button>
+            </div>
+        </div>
+
+        <!-- ВОПРОС 3 -->
+        <div class="page" id="page9">
+            <h2>Ты мне доверяешь?</h2>
+            <button class="ans-btn" onclick="handleQ3(true)">Да ❤️</button>
+            <button class="ans-btn" onclick="handleQ3(false)">Нет 💔</button>
+        </div>
+
+        <!-- ВОПРОС 4 -->
+        <div class="page" id="page10">
+            <h2 id="trust-text" class="fade-text"></h2>
+            <div id="q4-block" style="display:none; margin-top: 20px;">
+                <h3>Ты меня любишь?</h3>
+                <button class="ans-btn" onclick="handleQ4(true)">Да ❤️</button>
+                <button class="ans-btn" onclick="handleQ4(false)">Нет 💔</button>
+            </div>
+            <div id="q4-repeat-block" style="display:none; margin-top: 20px;">
+                <h3>Ты не шутишь?</h3>
+                <button class="ans-btn" onclick="handleQ4Final('Нет, не шучу')">Нет, не шучу 🥺</button>
+                <button class="ans-btn" onclick="handleQ4Final('Да, это так)')">Да, это так) 😘</button>
+            </div>
+        </div>
+
+        <!-- ВОПРОС 5 -->
+        <div class="page" id="page11">
+            <h2>Какое мнение у тебя сложилось обо мне за всё время нашего общения?</h2>
+            <input type="text" id="myOpinion" placeholder="Напиши честно...">
+            <button class="ans-btn" onclick="submitOpinion()">Отправить 💌</button>
+        </div>
+
+        <!-- ВОПРОС 6 -->
+        <div class="page" id="page12">
+            <h2>Хочешь узнать, что будет дальше?</h2>
+            <button class="ans-btn" onclick="nextPage(13)">Да, конечно! 😍</button>
+            <button class="ans-btn" onclick="alert('Ну и ладно! 😜')">Нет 😏</button>
+        </div>
+
+        <!-- СТИХ -->
+        <div class="page" id="page13">
+            <h2>Для тебя, Дана ❤️</h2>
+            <p class="poem">
+                Пусть у Даны всё будет классно,<br>
+                В душе тепло, в делах успех!<br>
+                Пусть каждый день горит прекрасно,<br>
+                А счастье обгоняет всех!<br><br>
+                Мечты пусть сбудутся любые,<br>
+                Дороги стелятся легко,<br>
+                И звёзды светят золотые<br>
+                К тебе на счастье высоко!<br><br>
+                Пускай удача будет рядом,<br>
+                В глазах сияет добрый свет,<br>
+                А все невзгоды только взглядом<br>
+                Растают, словно в небе след!<br><br>
+                Живи, люби, твори, мечтай,<br>
+                Пусть каждый миг будет красив,<br>
+                И чаще smile ты излучай,<br>
+                Свой каждый день благослови!
+            </p>
+            <p>От Славы. 💖</p>
+            <button class="next-btn" onclick="nextPage(14)">Дальше 💖</button>
+        </div>
+
+        <!-- ФИНАЛЬНАЯ СТРАНИЦА (ПЕРЕХОД В ЛС) -->
+        <div class="page" id="page14">
+            <h2>Спасибо, что прошла этот путь ❤️</h2>
+            <p class="compliment">Мне было очень приятно. Если захочешь продолжить общение или что-то спросить, напиши мне в личные сообщения!</p>
+            <a href="https://t.me/uwukf" target="_blank" class="ans-btn" style="text-decoration: none; display: inline-block;">Написать Славе 💌</a>
+        </div>
+    </div>
+
+    <!-- Модальное окно админки -->
+    <div id="admin-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 20px; border-radius: 15px; width: 90%; max-width: 400px; text-align: center;">
+            <h3 style="margin-bottom: 15px; color: #ff4d6d;">Котики</h3>
+            <div id="admin-auth">
+                <input type="password" id="admin-pass" placeholder="Введи пароль..." style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ccc; text-align: center; font-size: 16px;">
+                <p style="font-size: 12px; color: #888; margin-bottom: 10px;">Сначала пройди всё)</p>
+                <button onclick="checkPass()" style="background: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">Войти</button>
+                <button onclick="closeAdmin()" style="background: #ccc; color: #333; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-left: 5px;">Закрыть</button>
+            </div>
+            <div id="admin-content" style="display: none; text-align: left; max-height: 60vh; overflow-y: auto;">
+                <p id="admin-data" style="color: #333; font-size: 14px; line-height: 1.6; white-space: pre-wrap;"></p>
+                <button onclick="closeAdmin()" style="background: #ff4d6d; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 15px; width: 100%;">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
